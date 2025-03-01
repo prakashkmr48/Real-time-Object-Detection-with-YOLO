@@ -2,3 +2,4 @@ streamlit
 opencv-python
 ultralytics
 Pillow
+torch==2.1.0+cpu #or the correct version you need
