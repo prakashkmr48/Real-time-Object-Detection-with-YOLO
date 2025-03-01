@@ -1,3 +1,2 @@
 streamlit
-torch
-aioice 
+torch=2.6
