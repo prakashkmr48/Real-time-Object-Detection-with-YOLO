@@ -4,6 +4,7 @@ from ultralytics import YOLO
 import numpy as np
 import io
 from PIL import Image
+import matplotlib.pyplot as plt
 
 # Load the YOLOv8 model
 model = YOLO("yolov8n.pt")
@@ -21,7 +22,18 @@ def process_frame(frame):
     Performs object detection on a frame and returns the annotated frame.
     """
     results = model(frame)
-    annotated_frame = results[0].plot()
+    annotated_frame = frame.copy() # Make a copy to avoid modifying the original
+    for r in results:
+        boxes = r.boxes
+        for box in boxes:
+            x1, y1, x2, y2 = map(int, box.xyxy[0])
+            cv2.rectangle(annotated_frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
+            class_id = int(box.cls[0])
+            class_name = results[0].names[class_id]
+            conf = box.conf[0]
+            label = f"{class_name}: {conf:.2f}"
+            cv2.putText(annotated_frame, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+
     return annotated_frame
 
 def main():
