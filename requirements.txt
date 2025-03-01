@@ -1,2 +1,2 @@
 streamlit
-torch=2.6
+torch==2.1.2
