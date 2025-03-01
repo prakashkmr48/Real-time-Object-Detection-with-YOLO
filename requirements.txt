@@ -4,3 +4,4 @@ ultralytics
 Pillow
 torch
 streamlit-webrtc
+av
