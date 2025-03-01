@@ -1,8 +1,2 @@
 streamlit
-opencv-python
-ultralytics
-Pillow
-torch
-streamlit-webrtc
-av
-twilio
+torch==2.2.0+cpu #replace with working version
