@@ -50,8 +50,8 @@ def main():
     st.write("Click 'Capture' to capture frames.")
 
     # Twilio configuration
-    account_sid = os.environ.get('TWILIO_ACCOUNT_SID')
-    auth_token = os.environ.get('TWILIO_AUTH_TOKEN')
+    account_sid = st.secrets('TWILIO_ACCOUNT_SID')
+    auth_token = st.secrets('TWILIO_AUTH_TOKEN')
 
     if account_sid and auth_token:
         client = Client(account_sid, auth_token)
