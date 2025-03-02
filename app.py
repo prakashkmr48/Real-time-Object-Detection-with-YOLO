@@ -2,8 +2,13 @@ import os
 # Disable auto-reload early to avoid torch __path__ errors
 os.environ["STREAMLIT_SERVER_RUN_ON_SAVE"] = "false"
 
-# Patch asyncio using nest_asyncio to ensure an event loop is running
-import nest_asyncio
+# Ensure nest_asyncio is available; if not, prompt installation.
+try:
+    import nest_asyncio
+except ModuleNotFoundError:
+    raise ModuleNotFoundError(
+        "The 'nest_asyncio' package is required. Please install it with 'pip install nest_asyncio'."
+    )
 nest_asyncio.apply()
 
 import asyncio
@@ -23,7 +28,7 @@ from threading import Thread
 from ultralytics import YOLO
 from twilio.rest import Client
 
-# Load YOLO model (ensure this is imported after disabling auto-reload)
+# Load YOLO model
 model = YOLO("yolov8n.pt")
 
 # Initialize session state variables
